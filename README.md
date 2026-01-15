@@ -118,8 +118,6 @@ GET /ledgers/{id}
 
 Record a deposit or withdrawal for a ledger.
 
-**Note:** All amounts are specified in cents (e.g., 1000 = $10.00, 500 = $5.00).
-
 **Request:**
 ```
 POST /ledgers/{id}/transactions
@@ -171,13 +169,9 @@ GET /ledgers/{id}/transactions
 ]
 ```
 
-**Note:** All amounts in the transaction history are in cents.
-
 ### 6. Get Current Balance
 
 Retrieve the current balance of a ledger.
-
-**Note:** The balance is returned in cents (e.g., 750 = $7.50).
 
 **Request:**
 ```
@@ -222,7 +216,7 @@ curl -X POST http://localhost:8080/ledgers/{ledgerId}/transactions \
   -H "Content-Type: application/json" \
   -d '{"transactionType": "WITHDRAW", "amount": 200}'
 
-# 6. Check balance (balance in cents: 600 = $6.00)
+# 6. Check balance (balance in cents: 5100 = $51.00)
 curl http://localhost:8080/ledgers/{ledgerId}/balance
 
 # 7. View transaction history
@@ -278,7 +272,7 @@ Or for validation errors:
 
 2. **Data Persistence**: Data is stored in-memory and will be lost when the application restarts. This is intentional for simplicity as per the requirements.
 
-3. **Concurrency**: The application uses synchronized methods to handle concurrent access, but for production use, a proper database with transactions would be recommended.
+3. **Concurrency**: The application uses synchronized methods to handle concurrent access, but for production use, a proper database with transactions would be required.
 
 4. **Validation**: 
    - Amounts must be positive (greater than 0)
