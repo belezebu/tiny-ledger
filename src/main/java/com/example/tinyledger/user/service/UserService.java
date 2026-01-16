@@ -16,12 +16,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(CreateUserRequest createUserRequest) {
+    public User createUser(String firstName, String lastName, String emailAddress) {
         var user = new User(
                 UUID.randomUUID(),
-                createUserRequest.getFirstName(),
-                createUserRequest.getLastName(),
-                createUserRequest.getEmailAddress());
+                firstName,
+                lastName,
+                emailAddress);
         return this.userRepository.save(user);
     }
 

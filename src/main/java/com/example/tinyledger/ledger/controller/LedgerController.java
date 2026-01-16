@@ -46,7 +46,7 @@ public class LedgerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateEntityResponse createLedger(@Valid @RequestBody CreateLedgerRequest createLedgerRequest) {
-        var ledger = this.ledgerService.createLedger(createLedgerRequest);
+        var ledger = this.ledgerService.createLedger(createLedgerRequest.getName(), createLedgerRequest.getUserId());
         return CreateEntityResponse.from(ledger);
     }
 
@@ -54,7 +54,7 @@ public class LedgerController {
     @ResponseStatus(HttpStatus.CREATED)
     public CreateEntityResponse createTransaction(
             @PathVariable("id") UUID ledgerId, @Valid @RequestBody CreateTransactionRequest transaction) {
-        var transactionCreated = this.ledgerService.createTransaction(ledgerId, transaction);
+        var transactionCreated = this.ledgerService.createTransaction(ledgerId, transaction.getAmount(), transaction.getTransactionType());
         return new CreateEntityResponse(transactionCreated.id());
     }
 

@@ -7,6 +7,7 @@ import com.example.tinyledger.ledger.domain.Balance;
 import com.example.tinyledger.ledger.domain.Ledger;
 import com.example.tinyledger.ledger.domain.Money;
 import com.example.tinyledger.ledger.domain.Transaction;
+import com.example.tinyledger.ledger.domain.TransactionType;
 import com.example.tinyledger.ledger.repository.LedgerRepository;
 import com.example.tinyledger.user.service.UserService;
 import jakarta.annotation.Nullable;
@@ -36,10 +37,10 @@ public class LedgerService {
         return this.ledgerRepository.get(id).orElseThrow(() -> EntityNotFoundException.ledgerNotFound(id));
     }
 
-    public Transaction createTransaction(UUID ledgerId, CreateTransactionRequest transaction) {
+    public Transaction createTransaction(UUID ledgerId, Long requestedAmount, TransactionType type) {
         var ledger = getLedger(ledgerId);
-        var amount = new Money(transaction.getAmount());
-        return switch (transaction.getTransactionType()) {
+        var amount = new Money(requestedAmount);
+        return switch (type) {
                     case DEPOSIT -> ledger.deposit(amount);
                     case WITHDRAW -> ledger.withdraw(amount);
                 };
@@ -49,9 +50,9 @@ public class LedgerService {
         return getLedger(ledgerId).getTransactions();
     }
 
-    public Ledger createLedger(CreateLedgerRequest createLedgerRequest) {
-        var user = this.userService.getUser(createLedgerRequest.getUserId());
-        var ledger = new Ledger(createLedgerRequest.getName(), user.id());
+    public Ledger createLedger(String ledgerName, UUID userId) {
+        var user = this.userService.getUser(userId);
+        var ledger = new Ledger(ledgerName, user.id());
         return this.ledgerRepository.save(ledger);
     }
 
