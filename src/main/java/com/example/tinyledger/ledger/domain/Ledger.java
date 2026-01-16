@@ -1,7 +1,6 @@
 package com.example.tinyledger.ledger.domain;
 
 import com.example.tinyledger.common.exception.InvalidMoneyOperationException;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -24,7 +24,8 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateEntityResponse create(@Valid @RequestBody CreateUserRequest createUserRequest) {
-        var user = userService.createUser(createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmailAddress());
+        var user = userService.createUser(
+                createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmailAddress());
         return new CreateEntityResponse(user.id());
     }
 }

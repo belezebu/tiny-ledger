@@ -54,7 +54,8 @@ public class LedgerController {
     @ResponseStatus(HttpStatus.CREATED)
     public CreateEntityResponse createTransaction(
             @PathVariable("id") UUID ledgerId, @Valid @RequestBody CreateTransactionRequest transaction) {
-        var transactionCreated = this.ledgerService.createTransaction(ledgerId, transaction.getAmount(), transaction.getTransactionType());
+        var transactionCreated = this.ledgerService.createTransaction(
+                ledgerId, transaction.getAmount(), transaction.getTransactionType());
         return new CreateEntityResponse(transactionCreated.id());
     }
 

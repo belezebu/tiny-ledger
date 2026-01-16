@@ -176,7 +176,6 @@ class LedgerResponseControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     @DisplayName("Should get transaction history")
     void shouldGetTransactionHistory() throws Exception {
@@ -250,7 +249,7 @@ class LedgerResponseControllerIntegrationTest {
         var balanceResponse = objectMapper.readValue(balanceResponseAsString, BalanceResponse.class);
 
         assertEquals(ledgerId, balanceResponse.ledgerId());
-        assertEquals( 1000 * 3 - 300 * 3, balanceResponse.balance());
+        assertEquals(1000 * 3 - 300 * 3, balanceResponse.balance());
     }
 
     @Test

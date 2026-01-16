@@ -1,7 +1,6 @@
 package com.example.tinyledger.user.service;
 
 import com.example.tinyledger.common.exception.EntityNotFoundException;
-import com.example.tinyledger.user.controller.request.CreateUserRequest;
 import com.example.tinyledger.user.domain.User;
 import com.example.tinyledger.user.repository.UserRepository;
 import java.util.UUID;
@@ -17,11 +16,7 @@ public class UserService {
     }
 
     public User createUser(String firstName, String lastName, String emailAddress) {
-        var user = new User(
-                UUID.randomUUID(),
-                firstName,
-                lastName,
-                emailAddress);
+        var user = new User(UUID.randomUUID(), firstName, lastName, emailAddress);
         return this.userRepository.save(user);
     }
 

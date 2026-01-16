@@ -1,8 +1,6 @@
 package com.example.tinyledger.ledger.service;
 
 import com.example.tinyledger.common.exception.EntityNotFoundException;
-import com.example.tinyledger.ledger.controller.request.CreateLedgerRequest;
-import com.example.tinyledger.ledger.controller.request.CreateTransactionRequest;
 import com.example.tinyledger.ledger.domain.Balance;
 import com.example.tinyledger.ledger.domain.Ledger;
 import com.example.tinyledger.ledger.domain.Money;
@@ -41,9 +39,9 @@ public class LedgerService {
         var ledger = getLedger(ledgerId);
         var amount = new Money(requestedAmount);
         return switch (type) {
-                    case DEPOSIT -> ledger.deposit(amount);
-                    case WITHDRAW -> ledger.withdraw(amount);
-                };
+            case DEPOSIT -> ledger.deposit(amount);
+            case WITHDRAW -> ledger.withdraw(amount);
+        };
     }
 
     public List<Transaction> getTransactions(UUID ledgerId) {
