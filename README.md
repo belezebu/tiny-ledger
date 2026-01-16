@@ -268,7 +268,7 @@ Or for validation errors:
    - 500 cents = $5.00
    - 75 cents = $0.75
    
-   Amounts are stored as integers. For simplicity, no currency symbol or decimal places are used in the API.
+   Amounts are stored as integers.
 
 2. **Data Persistence**: Data is stored in-memory and will be lost when the application restarts. This is intentional for simplicity as per the requirements.
 
